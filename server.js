@@ -28,4 +28,8 @@ mongoose
 app.use("/user", userRoute);
 app.use("/property", propertyRoute);
 
+app.get("/", (req, res) => {
+  res.send("API Running...");
+});
+
 app.listen(PORT, console.log(`Server runining at port ${PORT}`));
