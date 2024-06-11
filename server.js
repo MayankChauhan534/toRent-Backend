@@ -17,10 +17,10 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 const PORT = process.env.PORT || 5000;
 
-const URL = process.env.URL;
+const DBURL = process.env.DBURL;
 
 mongoose
-  .connect(URL)
+  .connect(DBSURL)
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log("Mongo error: " + err));
 
