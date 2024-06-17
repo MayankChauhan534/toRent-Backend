@@ -57,7 +57,7 @@ router.post(
 // /property/query?city=City_Name&purpose=PG
 router.get("/query", fetchuser, async function (req, res) {
   let properties = {};
-  const { city, purpose, id } = req.query;
+  const { city, purpose, userid, propertyid } = req.query;
   if (purpose && city) {
     properties = await Property.find({
       purpose: purpose,
@@ -67,8 +67,10 @@ router.get("/query", fetchuser, async function (req, res) {
     properties = await Property.find({ city: city });
   } else if (purpose) {
     properties = await Property.find({ purpose: purpose });
-  } else if (id && id === req.user.id) {
+  } else if (userid && userid === req.user.id) {
     properties = await Property.find({ user: req.user.id });
+  } else if (propertyid) {
+    properties = await Property.find({ _id: propertyid });
   }
   return res.send(properties);
 });
